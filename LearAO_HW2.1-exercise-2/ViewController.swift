@@ -15,25 +15,30 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     
-    var count = 0
+    private var count = 0
+    
+    private let lightIsOn: CGFloat = 1
+    private let lightIsOff: CGFloat = 0.4
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        redView.alpha = 0.6
-        yellowView.alpha = 0.6
-        greenView.alpha = 0.6
-        
-        redView.layer.cornerRadius = redView.frame.size.width / 2
-        yellowView.layer.cornerRadius = yellowView.frame.size.width / 2
-        greenView.layer.cornerRadius = greenView.frame.size.width / 2
-        
+        redView.alpha = lightIsOff
+        yellowView.alpha = lightIsOff
+        greenView.alpha = lightIsOff
+
         startButton.layer.cornerRadius = 8
     }
     
+    override func viewDidLayoutSubviews() {
+        redView.layer.cornerRadius = redView.frame.width / 2
+        yellowView.layer.cornerRadius = yellowView.frame.width / 2
+        greenView.layer.cornerRadius = greenView.frame.width / 2
+    }
+    
     func changeAlpha(lastView: UIView, nextView: UIView) {
-        lastView.alpha = 0.6
-        nextView.alpha = 1
+        lastView.alpha = lightIsOff
+        nextView.alpha = lightIsOn
     }
 
     @IBAction func changeColor() {
